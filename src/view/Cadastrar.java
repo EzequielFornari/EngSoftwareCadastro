@@ -2,7 +2,6 @@ package view;
 
 
 
-import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -376,8 +375,14 @@ public class Cadastrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null,"Banco Desconectado com Sucesso");
-        System.exit(0);
+        
+        int x = JOptionPane.showConfirmDialog(null, "Deseja Sair E Desconectar?", null, JOptionPane.YES_NO_OPTION);
+  
+        if (x == 0) {
+            JOptionPane.showMessageDialog(null,"Banco Desconectado com Sucesso");
+            System.exit(0);
+            }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
@@ -402,14 +407,20 @@ public class Cadastrar extends javax.swing.JFrame {
         p.setAno(cxAno.getText());
         p.setPreco(cxPreco.getText());
         p.setModelo(cxModelo.getText());
-        dao.create(p);
-        readJTable();
         
-                cxPlaca.setText("");
-        cxNome.setText("");
-        cxAno.setText("");
-        cxPreco.setText("");
-        cxModelo.setText("");
+        if(cxPlaca.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Campo Placa Esta em Branco!");
+        }
+        else{
+            dao.create(p);
+            readJTable();
+            
+            cxPlaca.setText("");
+            cxNome.setText("");
+            cxAno.setText("");
+            cxPreco.setText("");
+            cxModelo.setText("");
+        }
     }//GEN-LAST:event_btCadActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

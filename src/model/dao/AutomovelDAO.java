@@ -26,7 +26,7 @@ public class AutomovelDAO {
             stmt.setString(3, p.getPreco());
             stmt.setString(4, p.getAno());
             stmt.setString(5, p.getModelo());
-
+                        
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
